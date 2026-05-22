@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MappedSky · Brand Resources</title>
+<link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" />
+<style>
+  :root {
+    --ink: #0a0e24;
+    --night: #06091a;
+    --night-2: #0c1430;
+    --night-3: #161d3d;
+    --cream: #f0f3ff;
+    --cream-2: #f7f6f0;
+    --star: #9fc6ff;
+    --gold: #f5c16c;
+    --line: rgba(255,255,255,0.08);
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--night);
+    color: var(--cream);
+    font: 15px/1.5 var(--display);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ── Top bar ─────────────────────────────────────────────── */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 36px;
+    background: rgba(6, 9, 26, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--display);
+    font-size: 18px; font-weight: 500; font-style: italic; letter-spacing: 0.005em;
+  }
+  .brand img { display: block; }
+  .brand-divider {
+    width: 1px; height: 14px;
+    background: rgba(255,255,255,0.18);
+  }
+  .brand-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--star);
+    opacity: 0.85;
+  }
+  .topbar nav {
+    display: flex; gap: 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+    opacity: 0.7;
+  }
+  .topbar nav a:hover { opacity: 1; color: var(--star); }
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 36px; }
+
+  .hero {
+    padding: 100px 0 72px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--star);
+    opacity: 0.7;
+    margin: 0 0 18px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 76px);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.05;
+    margin: 0 0 22px;
+    text-wrap: balance;
+  }
+  .hero h1 em { font-style: italic; font-weight: 500; color: var(--star); }
+  .hero p {
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.55;
+    opacity: 0.72;
+    text-wrap: pretty;
+  }
+
+  section { padding: 96px 0; border-bottom: 1px solid var(--line); }
+  .section-head { display: flex; align-items: baseline; gap: 16px; margin: 0 0 40px; }
+  .section-head h2 {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.9;
+    margin: 0;
+  }
+  .section-head .lede {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 18px;
+    opacity: 0.65;
+    margin: 0;
+  }
+
+  /* ── Tile grid ───────────────────────────────────────────── */
+  .grid {
+    display: grid;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 920px) {
+    .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  }
+
+  .tile {
+    display: flex;
+    flex-direction: column;
+  }
+  .tile .stage {
+    flex: 1;
+    min-height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 36px;
+    background: var(--night-2);
+    overflow: hidden;
+  }
+  .tile.on-cream .stage   { background: var(--cream); }
+  .tile.on-cream2 .stage  { background: var(--cream-2); }
+  .tile.on-night .stage   { background: var(--night); }
+  .tile.on-night2 .stage  { background: var(--night-2); }
+  .tile.on-grid .stage    {
+    background:
+      linear-gradient(var(--night-2), var(--night-2)),
+      repeating-linear-gradient(0deg,  rgba(255,255,255,0.04) 0 1px, transparent 1px 24px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 24px);
+    background-blend-mode: normal;
+    background-image:
+      repeating-linear-gradient(0deg,  rgba(255,255,255,0.05) 0 1px, transparent 1px 24px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 24px);
+    background-color: var(--night-2);
+  }
+
+  .tile .stage img,
+  .tile .stage svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  .tile.wide  .stage img { width: min(420px, 100%); }
+  .tile.med   .stage img { width: min(220px, 100%); }
+  .tile.small .stage img { width: min(140px, 100%); }
+  .tile.tiny  .stage img { width: min(72px, 100%); }
+  .tile.icon  .stage img { width: min(180px, 100%); border-radius: 22%; }
+
+  .tile .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--line);
+  }
+  .tile .meta-l {
+    display: flex; flex-direction: column; gap: 2px;
+    min-width: 0;
+  }
+  .tile .meta-name {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--cream);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .tile .meta-sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    opacity: 0.55;
+  }
+  .tile .meta a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--star);
+    padding: 6px 10px;
+    border: 1px solid rgba(159, 198, 255, 0.3);
+    border-radius: 999px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    flex-shrink: 0;
+  }
+  .tile .meta a:hover {
+    background: rgba(159, 198, 255, 0.1);
+    border-color: var(--star);
+  }
+
+  /* ── Color swatches ──────────────────────────────────────── */
+  .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  @media (max-width: 720px) { .swatches { grid-template-columns: repeat(2, 1fr); } }
+  .swatch { padding: 28px 22px; background: var(--night-2); display: flex; flex-direction: column; gap: 14px; }
+  .swatch .chip { width: 100%; height: 100px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.06); }
+  .swatch .name { font-family: var(--mono); font-size: 12px; color: var(--cream); }
+  .swatch .hex  { font-family: var(--mono); font-size: 11px; opacity: 0.55; }
+  .swatch .role { font-family: var(--mono); font-size: 11px; opacity: 0.7; }
+
+  /* ── Construction diagram ────────────────────────────────── */
+  .construction {
+    background: var(--night-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 760px) { .construction { grid-template-columns: 1fr; } }
+  .construction svg { width: 100%; height: auto; max-width: 420px; }
+  .construction h3 {
+    font-size: 28px; font-weight: 500; font-style: italic; letter-spacing: -0.005em;
+    margin: 0 0 16px;
+  }
+  .construction p {
+    font-size: 14px; line-height: 1.6; opacity: 0.72;
+    margin: 0 0 14px;
+    text-wrap: pretty;
+  }
+  .construction .stat-row {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    margin-top: 24px;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .construction .stat {
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+  .construction .stat-k { opacity: 0.55; font-size: 11px; margin-bottom: 4px; }
+  .construction .stat-v { color: var(--cream); }
+
+  /* ── Usage ───────────────────────────────────────────────── */
+  .usage {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px;
+  }
+  @media (max-width: 720px) { .usage { grid-template-columns: 1fr; } }
+  .usage-col h3 {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+    color: var(--cream);
+  }
+  .usage-col h3 .yes { color: #9be7c4; }
+  .usage-col h3 .no  { color: #ff9b7a; }
+  .usage-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .usage-col li {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 16px;
+    align-items: center;
+    padding: 14px;
+    background: var(--night-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .usage-col .demo {
+    height: 72px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .usage-col li p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.78;
+  }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  footer {
+    padding: 56px 36px;
+    font-family: var(--mono);
+    font-size: 12px;
+    opacity: 0.55;
+    text-align: center;
+  }
+  footer a { color: var(--star); }
+
+  /* ── Construction diagram colors ─────────────────────────── */
+  .ctor-grid { stroke: rgba(255,255,255,0.06); stroke-width: 0.4; }
+  .ctor-axes { stroke: rgba(159,198,255,0.25); stroke-width: 0.4; stroke-dasharray: 1.5 1.5; }
+  .ctor-line { stroke: var(--cream); stroke-width: 1.8; stroke-linecap: round; opacity: 0.55; }
+  .ctor-circ { fill: none; stroke: rgba(159,198,255,0.4); stroke-width: 0.5; }
+  .ctor-lbl  { font-family: var(--mono); font-size: 4px; fill: var(--star); opacity: 0.7; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img src="../assets/logo/mark-color.svg" alt="" width="22" height="22" style="background: var(--cream); padding: 4px; border-radius: 6px;" />
+    <span>MappedSky</span>
+    <span class="brand-divider"></span>
+    <span class="brand-tag">/ brand resources</span>
+  </div>
+  <nav>
+    <a href="#mark">Mark</a>
+    <a href="#lockup">Lockup</a>
+    <a href="#wordmark">Wordmark</a>
+    <a href="#utility">Utility</a>
+    <a href="#color">Color</a>
+    <a href="../">Splash ↗</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+<section class="hero">
+  <p class="kicker">Brand Resources · v1</p>
+  <h1>A constellation. A name. <em>A small kit</em> to use them well.</h1>
+  <p>The MappedSky identity is a four-star asterism — the North Star at apex, three companions tracing a path eastward — paired with the name set in <em>EB Garamond italic</em>. Use the variants below for any context: dark or light surface, full color or single weight, big lockup or tiny favicon.</p>
+</section>
+
+<!-- ── Construction ─────────────────────────────────────────── -->
+<section id="construction">
+  <div class="section-head">
+    <h2>01 / Construction</h2>
+    <p class="lede">How the mark is drawn.</p>
+  </div>
+  <div class="construction">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <!-- grid -->
+      <g class="ctor-grid">
+        <line x1="0" y1="20" x2="100" y2="20" />
+        <line x1="0" y1="40" x2="100" y2="40" />
+        <line x1="0" y1="60" x2="100" y2="60" />
+        <line x1="0" y1="80" x2="100" y2="80" />
+        <line x1="20" y1="0" x2="20" y2="100" />
+        <line x1="40" y1="0" x2="40" y2="100" />
+        <line x1="60" y1="0" x2="60" y2="100" />
+        <line x1="80" y1="0" x2="80" y2="100" />
+      </g>
+      <!-- axes -->
+      <g class="ctor-axes">
+        <line x1="20" y1="70" x2="50" y2="22" />
+        <line x1="50" y1="22" x2="80" y2="54" />
+        <line x1="80" y1="54" x2="66" y2="80" />
+      </g>
+      <!-- guide circles -->
+      <circle class="ctor-circ" cx="50" cy="22" r="9" />
+      <circle class="ctor-circ" cx="20" cy="70" r="6.5" />
+      <circle class="ctor-circ" cx="80" cy="54" r="6.5" />
+      <circle class="ctor-circ" cx="66" cy="80" r="5.5" />
+      <!-- actual lines -->
+      <g class="ctor-line" fill="none">
+        <line x1="20" y1="70" x2="50" y2="22" />
+        <line x1="50" y1="22" x2="80" y2="54" />
+        <line x1="80" y1="54" x2="66" y2="80" />
+      </g>
+      <!-- stars -->
+      <circle cx="20" cy="70" r="4"   fill="#f0f3ff" />
+      <circle cx="50" cy="22" r="5.5" fill="#9fc6ff" />
+      <circle cx="80" cy="54" r="4"   fill="#f0f3ff" />
+      <circle cx="66" cy="80" r="3"   fill="#f0f3ff" />
+      <!-- labels -->
+      <text class="ctor-lbl" x="13" y="79"  text-anchor="middle">α</text>
+      <text class="ctor-lbl" x="50" y="11"  text-anchor="middle">Polaris</text>
+      <text class="ctor-lbl" x="87" y="55"  text-anchor="start">γ</text>
+      <text class="ctor-lbl" x="68" y="91"  text-anchor="middle">δ</text>
+    </svg>
+    <div>
+      <h3>Four stars on a 100-unit grid.</h3>
+      <p>The North Star (Polaris) sits at (50, 22) — the optical apex. Three companions at α (20, 70), γ (80, 54), δ (66, 80) trace an open path through the cluster. Lines connect α→Polaris→γ→δ; the path is intentionally not closed.</p>
+      <p>Line weight is 1.8 units. Star radii: 5.5 (Polaris), 4.0 (α, γ), 3.0 (δ). Maintain these ratios at any size. For favicons below 24px, increase line weight to 2.6 for legibility.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-k">Viewbox</div><div class="stat-v">100 × 100</div></div>
+        <div class="stat"><div class="stat-k">Stroke</div><div class="stat-v">1.8 round</div></div>
+        <div class="stat"><div class="stat-k">Min clear space</div><div class="stat-v">8 units</div></div>
+        <div class="stat"><div class="stat-k">Min size</div><div class="stat-v">16 px</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Mark ─────────────────────────────────────────────────── -->
+<section id="mark">
+  <div class="section-head">
+    <h2>02 / Mark</h2>
+    <p class="lede">The constellation alone — use when the audience already knows the brand.</p>
+  </div>
+  <div class="grid grid-4">
+    <div class="tile small on-cream">
+      <div class="stage"><img src="../assets/logo/mark.svg" alt="MappedSky mark, primary" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">mark.svg</div><div class="meta-sub">primary · on light</div></div>
+        <a href="../assets/logo/mark.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile small on-night">
+      <div class="stage"><img src="../assets/logo/mark-on-dark.svg" alt="MappedSky mark, light" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">mark-on-dark.svg</div><div class="meta-sub">cream · on dark</div></div>
+        <a href="../assets/logo/mark-on-dark.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile small on-cream2">
+      <div class="stage"><img src="../assets/logo/mark-color.svg" alt="MappedSky mark, color" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">mark-color.svg</div><div class="meta-sub">accented north star</div></div>
+        <a href="../assets/logo/mark-color.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile small">
+      <div class="stage" style="padding:0;"><img src="../assets/logo/mark-night.svg" alt="MappedSky mark, night" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">mark-night.svg</div><div class="meta-sub">includes background</div></div>
+        <a href="../assets/logo/mark-night.svg" download>Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Lockup ───────────────────────────────────────────────── -->
+<section id="lockup">
+  <div class="section-head">
+    <h2>03 / Lockup</h2>
+    <p class="lede">Mark + wordmark. Use for headers, footers, and most surfaces.</p>
+  </div>
+  <div class="grid grid-2">
+    <div class="tile wide on-cream">
+      <div class="stage"><img src="../assets/logo/lockup-horizontal.svg" alt="MappedSky horizontal lockup" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">lockup-horizontal.svg</div><div class="meta-sub">primary · on light</div></div>
+        <a href="../assets/logo/lockup-horizontal.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile wide on-night">
+      <div class="stage"><img src="../assets/logo/lockup-horizontal-on-dark.svg" alt="MappedSky horizontal lockup, light" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">lockup-horizontal-on-dark.svg</div><div class="meta-sub">cream · on dark</div></div>
+        <a href="../assets/logo/lockup-horizontal-on-dark.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile wide on-cream2">
+      <div class="stage"><img src="../assets/logo/lockup-horizontal-color.svg" alt="MappedSky horizontal lockup, color" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">lockup-horizontal-color.svg</div><div class="meta-sub">accented north star</div></div>
+        <a href="../assets/logo/lockup-horizontal-color.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile med on-night2">
+      <div class="stage" style="padding: 48px;"><img src="../assets/logo/lockup-stacked-on-dark.svg" alt="MappedSky stacked lockup, light" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">lockup-stacked-on-dark.svg</div><div class="meta-sub">centered · for narrow surfaces</div></div>
+        <a href="../assets/logo/lockup-stacked-on-dark.svg" download>Download</a>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-2" style="margin-top: 1px;">
+    <div class="tile med on-cream">
+      <div class="stage" style="padding: 48px;"><img src="../assets/logo/lockup-stacked.svg" alt="MappedSky stacked lockup" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">lockup-stacked.svg</div><div class="meta-sub">centered · on light</div></div>
+        <a href="../assets/logo/lockup-stacked.svg" download>Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Wordmark ─────────────────────────────────────────────── -->
+<section id="wordmark">
+  <div class="section-head">
+    <h2>04 / Wordmark</h2>
+    <p class="lede">Name on its own — EB Garamond italic, weight 500. Outline before exporting to print.</p>
+  </div>
+  <div class="grid grid-2">
+    <div class="tile wide on-cream">
+      <div class="stage"><img src="../assets/logo/wordmark.svg" alt="MappedSky wordmark" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">wordmark.svg</div><div class="meta-sub">primary · on light</div></div>
+        <a href="../assets/logo/wordmark.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile wide on-night">
+      <div class="stage"><img src="../assets/logo/wordmark-on-dark.svg" alt="MappedSky wordmark, light" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">wordmark-on-dark.svg</div><div class="meta-sub">cream · on dark</div></div>
+        <a href="../assets/logo/wordmark-on-dark.svg" download>Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Utility ──────────────────────────────────────────────── -->
+<section id="utility">
+  <div class="section-head">
+    <h2>05 / Utility</h2>
+    <p class="lede">Favicon, app icon, social card.</p>
+  </div>
+  <div class="grid grid-3">
+    <div class="tile tiny on-night2">
+      <div class="stage" style="gap: 32px;">
+        <img src="../assets/logo/favicon.svg" alt="MappedSky favicon" style="width: 96px; height: 96px;" />
+        <img src="../assets/logo/favicon.svg" alt="" style="width: 48px; height: 48px;" />
+        <img src="../assets/logo/favicon.svg" alt="" style="width: 24px; height: 24px;" />
+        <img src="../assets/logo/favicon.svg" alt="" style="width: 16px; height: 16px;" />
+      </div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">favicon.svg</div><div class="meta-sub">browser tab · 16-96 px</div></div>
+        <a href="../assets/logo/favicon.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile icon on-night2">
+      <div class="stage"><img src="../assets/logo/app-icon.svg" alt="MappedSky app icon" /></div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">app-icon.svg</div><div class="meta-sub">iOS / Android · 1024 px</div></div>
+        <a href="../assets/logo/app-icon.svg" download>Download</a>
+      </div>
+    </div>
+    <div class="tile on-night2" style="grid-column: span 1;">
+      <div class="stage" style="padding: 24px;">
+        <img src="../assets/logo/og-card.svg" alt="MappedSky OG card"
+             style="max-width: 100%; max-height: 200px; border-radius: 6px; border: 1px solid var(--line);" />
+      </div>
+      <div class="meta">
+        <div class="meta-l"><div class="meta-name">og-card.svg</div><div class="meta-sub">Open Graph · 1200 × 630</div></div>
+        <a href="../assets/logo/og-card.svg" download>Download</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Color ────────────────────────────────────────────────── -->
+<section id="color">
+  <div class="section-head">
+    <h2>06 / Color</h2>
+    <p class="lede">Four colors total. Two surfaces, two highlights.</p>
+  </div>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background: #0a0e24;"></div>
+      <div>
+        <div class="name">Ink</div>
+        <div class="hex">#0A0E24</div>
+        <div class="role">surface · linework · type</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #f0f3ff;"></div>
+      <div>
+        <div class="name">Cream</div>
+        <div class="hex">#F0F3FF</div>
+        <div class="role">surface · type on dark</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #9fc6ff;"></div>
+      <div>
+        <div class="name">Polaris</div>
+        <div class="hex">#9FC6FF</div>
+        <div class="role">north star · accent · links</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background: #f5c16c;"></div>
+      <div>
+        <div class="name">Gold</div>
+        <div class="hex">#F5C16C</div>
+        <div class="role">warm accent · holidays</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Usage ────────────────────────────────────────────────── -->
+<section id="usage">
+  <div class="section-head">
+    <h2>07 / Usage</h2>
+    <p class="lede">A short list. Trust your eye for the rest.</p>
+  </div>
+  <div class="usage">
+    <div class="usage-col">
+      <h3><span class="yes">●</span> Do</h3>
+      <ul>
+        <li>
+          <div class="demo" style="background: var(--cream);">
+            <img src="../assets/logo/mark-color.svg" style="width: 48px;" alt="" />
+          </div>
+          <p>Use the accented mark on cream or pale surfaces for the strongest read.</p>
+        </li>
+        <li>
+          <div class="demo" style="background: var(--night);">
+            <img src="../assets/logo/mark-on-dark.svg" style="width: 48px;" alt="" />
+          </div>
+          <p>Use the cream mark on dark surfaces. North-star accent only when there's room to breathe.</p>
+        </li>
+        <li>
+          <div class="demo" style="background: var(--night);">
+            <img src="../assets/logo/mark-on-dark.svg" style="width: 56px;" alt="" />
+          </div>
+          <p>Leave at least 8 units of clear space on every side — equal to the diameter of the Polaris star.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="usage-col">
+      <h3><span class="no">●</span> Don't</h3>
+      <ul>
+        <li>
+          <div class="demo" style="background: linear-gradient(45deg, #ff7ab3, #7ad2ff);">
+            <img src="../assets/logo/mark.svg" style="width: 48px;" alt="" />
+          </div>
+          <p>Don't drop the mark on busy gradients or photos. Use a solid surface.</p>
+        </li>
+        <li>
+          <div class="demo" style="background: var(--cream);">
+            <img src="../assets/logo/mark.svg" style="width: 48px; transform: rotate(18deg);" alt="" />
+          </div>
+          <p>Don't rotate, mirror, or recolor the linework. The orientation carries meaning.</p>
+        </li>
+        <li>
+          <div class="demo" style="background: var(--cream);">
+            <img src="../assets/logo/mark.svg" style="width: 10px;" alt="" />
+          </div>
+          <p>Don't use the mark below 16 px on the long edge. Below that, use the favicon instead.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  © MappedSky · <a href="../">back to splash</a> · all artifacts SVG, licensed for use on MappedSky properties and approved community projects
+</footer>
+
+</body>
+</html>

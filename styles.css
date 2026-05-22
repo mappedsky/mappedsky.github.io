@@ -1,0 +1,479 @@
+/* styles.css — MappedSky OSS splash */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #06091a;
+  color: #1a1d2b;
+  font-family: var(--font-body, system-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+
+/* ── Page shell ─────────────────────────────────────────────── */
+.page {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ── Sky (fixed background) ─────────────────────────────────── */
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.sky-grad { position: absolute; inset: 0; transition: background 0.6s ease; }
+.sky-haze {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 38vh;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.25) 100%);
+  transition: opacity 0.6s ease;
+}
+.sky-ambient {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.35);
+}
+.star.twinkle {
+  animation: starTwinkle var(--tw-dur, 4s) ease-in-out infinite;
+  animation-delay: var(--tw-delay, 0s);
+}
+@keyframes starTwinkle {
+  0%, 100% { opacity: var(--tw-base, 0.6); }
+  50%      { opacity: calc(var(--tw-base, 0.6) * 0.4); }
+}
+
+.constellation-wrap {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+.sky-orb {
+  position: absolute;
+  width: 14vw;
+  height: 14vw;
+  max-width: 160px;
+  max-height: 160px;
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: left 0.6s ease, top 0.6s ease, background 0.6s ease, opacity 0.6s ease;
+  filter: blur(0.5px);
+  pointer-events: none;
+}
+
+/* ── Birds ──────────────────────────────────────────────────── */
+.birds {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  overflow: hidden;
+}
+.bird-track {
+  position: absolute;
+  left: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.2s linear;
+}
+.bird-formation {
+  display: block;
+}
+.bird {
+  display: block;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.05));
+}
+
+/* Animation gating */
+.anim-off .birds { display: none; }
+
+/* ── Nav ────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 36px;
+  color: #15182a;
+  transition: color 0.6s ease, background 0.4s ease, backdrop-filter 0.4s ease;
+}
+.nav.on-night {
+  color: #e7eaf5;
+  background: linear-gradient(180deg, rgba(6,9,26,0.55) 0%, rgba(6,9,26,0) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  color: inherit;
+}
+.brand-mark svg { color: currentColor; }
+.nav.on-night .brand-mark { color: rgba(255,255,255,0.95); }
+
+.brand-sub {
+  font-size: 12px;
+  opacity: 0.55;
+  margin-left: 2px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 13px;
+}
+.nav-links a {
+  cursor: pointer;
+  opacity: 0.78;
+  transition: opacity 0.15s ease;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-links .cta {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  opacity: 1;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.nav-links .cta:hover {
+  background: #15182a;
+  color: #f0f3ff;
+}
+.nav.on-night .cta:hover {
+  background: #f0f3ff;
+  color: #06091a;
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 120px 36px 80px;
+}
+.hero-inner {
+  max-width: 880px;
+  width: 100%;
+  transition: color 0.6s ease;
+}
+.hero-inner.on-day  { color: #14192e; }
+.hero-inner.on-night { color: #f0f3ff; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  margin: 0 0 28px;
+  text-transform: lowercase;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #9fc6ff);
+  box-shadow: 0 0 0 4px rgba(159,198,255,0.18);
+}
+
+.hero h1 {
+  font-size: clamp(48px, 8vw, 112px);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  margin: 0 0 28px;
+}
+.h1-soft { opacity: 0.65; }
+
+.lede {
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.45;
+  max-width: 580px;
+  opacity: 0.78;
+  margin: 0 0 36px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn.primary {
+  background: #14192e;
+  color: #fff;
+}
+.on-day .btn.primary  { background: #14192e; color: #fff; }
+.on-night .btn.primary { background: #f0f3ff; color: #06091a; }
+.btn.ghost {
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+.btn.ghost:hover { opacity: 1; }
+
+.scroll-hint {
+  margin-top: 80px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  opacity: 0.5;
+  text-transform: uppercase;
+  animation: bob 2.4s ease-in-out infinite;
+}
+.anim-off .scroll-hint { animation: none; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(6px); opacity: 0.85; }
+}
+
+/* ── Sky stage (drives day→night) ───────────────────────────── */
+.sky-stage {
+  position: relative;
+  z-index: 1;
+  /* Long enough for the sky to fade and constellations to draw in,
+     short enough that the directory doesn't feel like dead space away. */
+  height: 130vh;
+}
+.sky-stage-marker {
+  position: sticky;
+  top: 40%;
+  display: none; /* hidden — purely a scroll driver */
+}
+.sky-stage-num {
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+}
+
+/* ── Section headers ────────────────────────────────────────── */
+.section-head {
+  max-width: 720px;
+  margin: 0 0 56px;
+}
+.kicker {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0 0 18px;
+}
+.section-head h2 {
+  font-size: clamp(32px, 4.2vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  text-wrap: pretty;
+}
+.section-lede {
+  font-size: 17px;
+  line-height: 1.55;
+  opacity: 0.72;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+/* ── Repos ──────────────────────────────────────────────────── */
+.repos {
+  position: relative;
+  z-index: 1;
+  padding: 140px 36px 120px;
+  background: linear-gradient(180deg, rgba(6,9,26,0) 0%, rgba(6,9,26,0.55) 12%, #06091a 30%);
+  color: #e7eaf5;
+}
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  .repo-grid { grid-template-columns: 1fr; }
+}
+.repo-card {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  gap: 20px;
+  padding: 28px 28px 26px;
+  background: rgba(10, 14, 36, 0.78);
+  transition: background 0.2s ease;
+}
+.repo-card:hover { background: rgba(15, 20, 50, 0.92); }
+.repo-card.flagship {
+  background: rgba(14, 20, 48, 0.85);
+}
+.repo-card.flagship:hover { background: rgba(20, 28, 60, 0.95); }
+.repo-chip {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.repo-chip svg {
+  border-radius: 8px;
+  background: radial-gradient(circle at 50% 50%, rgba(159,198,255,0.05), transparent 70%);
+}
+.repo-logo {
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(143,180,255,0.10), transparent 65%);
+}
+.repo-meta header h3 {
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+  color: #fff;
+}
+.repo-meta header .tag {
+  font-size: 13px;
+  opacity: 0.6;
+  margin: 0 0 14px;
+}
+.summary {
+  font-size: 14.5px;
+  line-height: 1.55;
+  opacity: 0.78;
+  margin: 0 0 18px;
+  text-wrap: pretty;
+}
+.repo-card footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  opacity: 0.65;
+}
+.lang { display: inline-flex; align-items: center; gap: 6px; }
+.lang .dot { width: 8px; height: 8px; border-radius: 50%; }
+.sep { opacity: 0.35; }
+.updated { opacity: 0.55; }
+.repo-link {
+  margin-left: auto;
+  color: var(--accent, #9fc6ff);
+  opacity: 0.95;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.repo-link:hover { opacity: 1; transform: translateX(2px); }
+
+/* ── Contribute ─────────────────────────────────────────────── */
+.contribute {
+  position: relative;
+  z-index: 1;
+  padding: 100px 36px 120px;
+  background: #06091a;
+  color: #e7eaf5;
+}
+.contribute .section-head h2 {
+  font-size: clamp(22px, 2.4vw, 32px);
+  letter-spacing: -0.01em;
+  opacity: 0.95;
+  max-width: 760px;
+  line-height: 1.35;
+}
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 56px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  .steps { grid-template-columns: 1fr; }
+}
+.steps li {
+  padding: 32px 28px;
+  background: rgba(10, 14, 36, 0.78);
+  transition: background 0.2s ease;
+}
+.steps li:hover { background: rgba(15, 20, 50, 0.92); }
+.step-k {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--accent, #9fc6ff);
+  opacity: 0.75;
+  margin-bottom: 16px;
+}
+.steps h3 {
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  color: #fff;
+}
+.steps p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+  opacity: 0.72;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.page-footer {
+  position: relative;
+  z-index: 1;
+  padding: 56px 36px;
+  background: #06091a;
+  color: #c2c8de;
+  font-size: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.foot-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  opacity: 0.7;
+}
+.foot-sep { opacity: 0.4; }
+.foot-meta {
+  margin-top: 14px;
+  opacity: 0.4;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}

@@ -1,0 +1,32 @@
+name: Update repo stats
+
+on:
+  schedule:
+    - cron: '17 6 * * *'  # daily at 06:17 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh stars + last-pushed in repos.jsx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/update-repo-stats.py
+
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain repos.jsx)" ]]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add repos.jsx
+            git commit -m "chore: refresh repo stats from GitHub API"
+            git push
+          else
+            echo "no changes to commit"
+          fi
