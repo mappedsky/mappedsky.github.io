@@ -173,6 +173,44 @@ button { font: inherit; }
   color: #06091a;
 }
 
+@media (max-width: 560px) {
+  .nav {
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 92px;
+    height: auto;
+    padding: 12px 18px 14px;
+    gap: 10px;
+  }
+
+  .brand {
+    min-width: 0;
+    font-size: 17px;
+  }
+
+  .brand-mark {
+    flex: 0 0 24px;
+  }
+
+  .brand-sub {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .nav-links .cta {
+    flex: 0 0 auto;
+    padding: 7px 12px;
+  }
+}
+
 /* ── Hero ───────────────────────────────────────────────────── */
 .hero {
   position: relative;
