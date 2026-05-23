@@ -112,7 +112,8 @@ button { font: inherit; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 36px;
+  height: 64px;
+  padding: 0 36px;
   color: #15182a;
   transition: color 0.6s ease, background 0.4s ease, backdrop-filter 0.4s ease;
 }
@@ -125,22 +126,22 @@ button { font: inherit; }
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 16px;
+  gap: 6px;
+  font-size: 18px;
   letter-spacing: -0.01em;
 }
 .brand-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px; height: 28px;
+  width: 24px; height: 24px;
   color: inherit;
 }
 .brand-mark svg { color: currentColor; }
 .nav.on-night .brand-mark { color: rgba(255,255,255,0.95); }
 
 .brand-sub {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.55;
   margin-left: 2px;
 }
@@ -148,7 +149,7 @@ button { font: inherit; }
   display: flex;
   align-items: center;
   gap: 22px;
-  font-size: 13px;
+  font-size: 15px;
 }
 .nav-links a {
   cursor: pointer;
@@ -193,7 +194,7 @@ button { font: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: 0.04em;
   opacity: 0.7;
   margin: 0 0 28px;
@@ -226,7 +227,7 @@ button { font: inherit; }
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  font-size: 13px;
+  font-size: 15px;
 }
 .btn {
   display: inline-flex;
@@ -253,7 +254,7 @@ button { font: inherit; }
 
 .scroll-hint {
   margin-top: 80px;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.2em;
   opacity: 0.5;
   text-transform: uppercase;
@@ -280,7 +281,7 @@ button { font: inherit; }
 }
 .sky-stage-num {
   color: rgba(255,255,255,0.4);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 /* ── Section headers ────────────────────────────────────────── */
@@ -289,7 +290,7 @@ button { font: inherit; }
   margin: 0 0 56px;
 }
 .kicker {
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   opacity: 0.5;
@@ -303,7 +304,7 @@ button { font: inherit; }
   text-wrap: pretty;
 }
 .section-lede {
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.55;
   opacity: 0.72;
   margin: 0;
@@ -358,18 +359,18 @@ button { font: inherit; }
   background: radial-gradient(circle at 50% 50%, rgba(143,180,255,0.10), transparent 65%);
 }
 .repo-meta header h3 {
-  font-size: 22px;
+  font-size: 25px;
   letter-spacing: -0.01em;
   margin: 0 0 4px;
   color: #fff;
 }
 .repo-meta header .tag {
-  font-size: 13px;
+  font-size: 15px;
   opacity: 0.6;
   margin: 0 0 14px;
 }
 .summary {
-  font-size: 14.5px;
+  font-size: 17px;
   line-height: 1.55;
   opacity: 0.78;
   margin: 0 0 18px;
@@ -380,7 +381,7 @@ button { font: inherit; }
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.02em;
   opacity: 0.65;
 }
@@ -434,20 +435,20 @@ button { font: inherit; }
 .steps li:hover { background: rgba(15, 20, 50, 0.92); }
 .step-k {
   display: block;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.18em;
   color: var(--accent, #9fc6ff);
   opacity: 0.75;
   margin-bottom: 16px;
 }
 .steps h3 {
-  font-size: 20px;
+  font-size: 23px;
   letter-spacing: -0.01em;
   margin: 0 0 8px;
   color: #fff;
 }
 .steps p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.55;
   margin: 0;
   opacity: 0.72;
@@ -460,7 +461,7 @@ button { font: inherit; }
   padding: 56px 36px;
   background: #06091a;
   color: #c2c8de;
-  font-size: 12px;
+  font-size: 14px;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 .foot-row {

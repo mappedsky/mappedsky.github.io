@@ -11,7 +11,7 @@ const FONTS = {
   display: "'EB Garamond', 'Iowan Old Style', Georgia, serif",
   body:    "'EB Garamond', Georgia, serif",
   mono:    "'JetBrains Mono', ui-monospace, monospace",
-  gfont:   'family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500',
+  gfont:   'family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500',
   weight:  { display: 500, body: 400 },
 };
 
@@ -213,7 +213,7 @@ function NavBar({ scrolled, onJump }) {
             <circle cx="66" cy="80" r="4.6" fill="currentColor" />
           </svg>
         </span>
-        <span>MappedSky</span>
+        <span style={{ fontStyle: 'italic' }}>MappedSky</span>
         <span className="brand-sub" style={{ fontFamily: FONTS.mono }}>/ open source</span>
       </div>
       <div className="nav-links" style={{ fontFamily: FONTS.mono }}>
