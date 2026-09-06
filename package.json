@@ -1,0 +1,12 @@
+{
+  "name": "mappedsky-oss-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Static splash site for github.com/mappedsky, served by GitHub Pages.",
+  "scripts": {
+    "build": "esbuild repos.jsx sky.jsx birds.jsx app.jsx --outdir=assets/js --target=es2019 --minify --log-level=warning"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}

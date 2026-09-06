@@ -10,16 +10,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="styles.css" />
 
-<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"
+        integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"
+        integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 <div id="root"></div>
 
-<script type="text/babel" src="repos.jsx"></script>
-<script type="text/babel" src="sky.jsx"></script>
-<script type="text/babel" src="birds.jsx"></script>
-<script type="text/babel" src="app.jsx"></script>
+<!-- Compiled from the .jsx sources by `npm run build` (esbuild); the deploy
+     workflow runs it before publishing. Load order matters: repos -> sky ->
+     birds -> app. -->
+<script src="assets/js/repos.js"></script>
+<script src="assets/js/sky.js"></script>
+<script src="assets/js/birds.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
