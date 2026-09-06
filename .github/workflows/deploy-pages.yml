@@ -39,6 +39,9 @@ jobs:
       - name: Compile JSX
         run: npm run build
 
+      - name: Check published assets
+        run: python3 .github/scripts/check-assets.py
+
       # path: . publishes the whole checkout, so drop the build deps first.
       - name: Remove build dependencies
         run: rm -rf node_modules

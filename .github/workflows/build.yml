@@ -1,0 +1,36 @@
+name: Build check
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install build dependencies
+        run: npm ci
+
+      # Same command the deploy workflow runs, so a broken build fails here
+      # instead of at merge time.
+      - name: Compile JSX
+        run: npm run build
+
+      - name: Check published assets
+        run: python3 .github/scripts/check-assets.py
