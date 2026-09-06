@@ -25,6 +25,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install build dependencies
+        run: npm ci
+
+      # Compiles the .jsx sources to assets/js/*.js so the browser never has to
+      # load a JSX transpiler at runtime.
+      - name: Compile JSX
+        run: npm run build
+
+      - name: Check published assets
+        run: python3 .github/scripts/check-assets.py
+
+      # path: . publishes the whole checkout, so drop the build deps first.
+      - name: Remove build dependencies
+        run: rm -rf node_modules
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
